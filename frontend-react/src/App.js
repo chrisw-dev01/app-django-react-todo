@@ -9,6 +9,10 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
 
+import AddTodo from './components/add-todo';
+import TodosList from './components/todos-list';
+import Login from './components/login';
+import Signup from './components/signup';
 
 function App() {
   return (
