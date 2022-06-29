@@ -21,10 +21,23 @@ import TodosList from './components/todos-list';
 import Login from './components/login';
 import Signup from './components/signup';
 
-// Temporary
-let user = "Henry";
-
 function App() {
+  const [user, setUser] = React.useState(null);
+  const [token, setToken] = React.useState(null);
+  const [error, setError] = React.useState("");
+
+  async function login(user = null){
+    setUser(user);
+  }
+
+  async function logout(){
+    setUser(null);
+  }
+
+  async function signup(user = null){
+    setUser(user);
+  }
+  
   return (
     <AppBar
         position="static"
