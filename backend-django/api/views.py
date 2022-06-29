@@ -2,7 +2,7 @@ from rest_framework import generics
 from .serializers import TodoSerializer
 from todo.models import Todo
 
-class TodoList(generics.ListAPIView):
+class TodoListCreate(generics.ListCreateAPIView):
   serializer_class = TodoSerializer
 
   def get_queryset(self):
