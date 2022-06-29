@@ -1,5 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -7,18 +9,14 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
 
-import './index.css';
-
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Hello World
-        </p>
-      </header>
-    </div>
+    <Box sx={{ width: '100%', maxWidth: 500 }}>
+      <Typography variant="h1" component="div" gutterBottom>
+        Hello World
+      </Typography>
+    </Box>
   );
 }
 
