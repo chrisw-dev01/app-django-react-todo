@@ -22,6 +22,8 @@ import TodosList from './components/todos-list';
 import Login from './components/login';
 import Signup from './components/signup';
 
+import TodoDataService from './services/todos';
+
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -29,7 +31,21 @@ function App() {
   const [error, setError] = React.useState("");
 
   async function login(user = null){
-    setUser(user);
+    TodoDataService.login(user)
+      // Call backend API login endpoint
+      .then(response => {
+        // Get authorization token
+        setToken(response.data.token);
+        setUser(user.username);
+        // Store in local storage
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', user.username);
+        setError("");
+      })
+      .catch( e => {
+        console.log('login', e);
+          setError(e.toString());
+      });
   }
 
   async function logout(){
