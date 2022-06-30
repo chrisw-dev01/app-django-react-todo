@@ -8,7 +8,8 @@ import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 
-// import { Switch, Route, Link } from 'react-router-dom';
+// import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -20,6 +21,7 @@ import AddTodo from './components/add-todo';
 import TodosList from './components/todos-list';
 import Login from './components/login';
 import Signup from './components/signup';
+
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -39,42 +41,54 @@ function App() {
   }
   
   return (
-    <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
-      >
-        <Toolbar sx={{ flexWrap: 'wrap' }}>
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            Todos App
-          </Typography>
-          <nav>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="/todos"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Todos
-            </Link>
-          </nav>
-          { user ? (
-            <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-              Logout ({user})
-            </Button>
-          ) : (
-            <>
-              <Button href="/login" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-                Login
+    <>
+      <AppBar
+          position="static"
+          color="default"
+          elevation={0}
+          sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+        >
+          <Toolbar sx={{ flexWrap: 'wrap' }}>
+            <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+              Todos App
+            </Typography>
+            <nav>
+              <Link
+                variant="button"
+                color="text.primary"
+                href="/todos"
+                sx={{ my: 1, mx: 1.5 }}
+              >
+                Todos
+              </Link>
+            </nav>
+            { user ? (
+              <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+                Logout ({user})
               </Button>
-              <Button href="/signup" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-                Signup
-              </Button>
-            </>
-          )}
-        </Toolbar>
+            ) : (
+              <>
+                <Button href="/login" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+                  Login
+                </Button>
+                <Button href="/signup" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+                  Signup
+                </Button>
+              </>
+            )}
+          </Toolbar>
       </AppBar>
+      <Routes>
+        {["/", "/todos" ].map((path, index) => 
+          <Route path={path} key={index} 
+                 element={<TodosList token={token} />} />
+        )}
+        <Route path="/todos/create" element={<AddTodo token={token} />} />
+        <Route path="/todos/:id" element={<AddTodo token={token} />} />
+        <Route path="/login" element={<Login login={login}/>}/>
+        <Route path="/signup" element={<Signup signup={signup} />} />
+      </Routes>
+    </>
   );
 }
 
