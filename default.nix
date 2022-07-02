@@ -4,7 +4,6 @@ let
   python-with-my-packages = my-python.withPackages (p: with p; [
     django
     djangorestframework
-    axios
     django-cors-headers
   ]);
 in
